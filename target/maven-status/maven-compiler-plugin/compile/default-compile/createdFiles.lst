@@ -1,0 +1,12 @@
+com/agriness/onlinebooks/resources/ClientResource.class
+com/agriness/onlinebooks/util/EntityManagerProducer.class
+com/agriness/onlinebooks/service/BookService.class
+com/agriness/onlinebooks/repository/BookRepository.class
+com/agriness/onlinebooks/resources/BookResource.class
+com/agriness/onlinebooks/model/Book.class
+com/agriness/onlinebooks/JAXRSConfiguration.class
+com/agriness/onlinebooks/repository/ReservationRepository.class
+com/agriness/onlinebooks/model/Client.class
+com/agriness/onlinebooks/model/Reservation.class
+com/agriness/onlinebooks/service/ReservationService.class
+com/agriness/onlinebooks/repository/ClientRepository.class

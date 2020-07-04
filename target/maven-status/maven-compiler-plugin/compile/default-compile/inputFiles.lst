@@ -1,0 +1,12 @@
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/model/Book.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/util/EntityManagerProducer.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/model/Reservation.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/service/BookService.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/JAXRSConfiguration.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/service/ReservationService.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/repository/BookRepository.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/resources/ClientResource.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/resources/BookResource.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/model/Client.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/repository/ReservationRepository.java
+/home/evellyn/Documents/workspace-java-ee/OnlineBooks/src/main/java/com/agriness/onlinebooks/repository/ClientRepository.java
