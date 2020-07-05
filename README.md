@@ -36,3 +36,33 @@ GET http://localhost:8080/onlinebooks/resources/clients/{id}/books
 POST http://localhost:8080/onlinebooks/resources/books/{id}/reserve?clientId={id}
 
 
+### Informações
+>Para o valor da multa foi estabelecido um valor fixo de dez reais para a base de cálculo, e seguindo a seguinte tabela de juros:
+<table>
+  <tr>
+  	<th>Dias em atraso</th>
+    <th>Multa</th>
+    <th>Juros por dia</th>
+  </tr>
+  <tr>
+  	<td>Sem atraso</td>
+    <td>0% </td>
+    <td>0% </td>
+  </tr>
+   <tr>
+  	<td>Até 3 dias</td>
+    <td>3%</td>
+    <td>0.2%</td>
+  </tr>
+   <tr>
+  	<td>Acima de 3 dias</td>
+    <td>5%</td>
+    <td>0.4%</td>
+  </tr>
+   <tr>
+  	<td>Acima de 5 dias</td>
+    <td>7%</td>
+    <td>0.6%</td>
+  </tr> 
+</table>
+
