@@ -35,7 +35,7 @@ public class Reservation implements Serializable{
 	
 	private BigDecimal ticket;
 	
-	
+	@Column(name = "ticket_by_day")
 	private BigDecimal ticketByDay;
 
 	public Long getId() {

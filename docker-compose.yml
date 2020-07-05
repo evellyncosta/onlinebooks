@@ -22,7 +22,16 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=agrinessdb
       - MYSQL_USER=root
-
+  flyway:
+    image: flyway/flyway
+    command: -url=jdbc:mysql://172.10.1.1:3306 -schemas=agrinessdb -user=root -password=123456 -connectRetries=60 migrate
+    container_name: flyway
+    volumes:
+      - .:/flyway/sql
+    depends_on:
+      - db
+    networks:
+      - dev-agriness
   java:
     build: 
       context: .
@@ -32,7 +41,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - "db"
+      - "flyway"
 #    volumes:
 #      - './deploy:/opt/jboss/wildfly/standalone/deployments'
     networks:
