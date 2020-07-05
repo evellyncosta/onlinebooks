@@ -66,3 +66,6 @@ POST http://localhost:8080/onlinebooks/resources/books/{id}/reserve?clientId={id
   </tr> 
 </table>
 
+#### Collection do Postman
+>Para facilitar o teste dos endpoints, há a possibilidade de importar a collection no Postman:
+[Collection OnlineBooks](https://drive.google.com/drive/folders/1Le__ualTJg_qxyuRD-s7eRTsIN31E8sO?usp=sharing)
