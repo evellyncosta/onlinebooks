@@ -1,7 +1,2 @@
-"{
-    \"WFLYCTL0412: Required services that are not installed:\" => [\"jboss.naming.context.java.jboss.datasources.agrinessds\"],
-    \"WFLYCTL0180: Services with missing/unavailable dependencies\" => [
-        \"jboss.persistenceunit.\\\"OnlineBooks-0.0.1-SNAPSHOT.war#agriness\\\" is missing [jboss.naming.context.java.jboss.datasources.agrinessds]\",
-        \"jboss.persistenceunit.\\\"OnlineBooks-0.0.1-SNAPSHOT.war#agriness\\\".__FIRST_PHASE__ is missing [jboss.naming.context.java.jboss.datasources.agrinessds]\"
-    ]
-}"
+"{\"WFLYCTL0080: Failed services\" => {\"jboss.deployment.unit.\\\"OnlineBooks-0.0.1-SNAPSHOT.war\\\".WeldStartService\" => \"Failed to start service
+    Caused by: java.lang.IllegalArgumentException: WFLYWELD0037: Error injecting persistence unit into CDI managed bean. Can't find a persistence unit named 'agendamento' in deployment OnlineBooks-0.0.1-SNAPSHOT.war for injection point private javax.persistence.EntityManager com.agriness.onlinebooks.util.EntityManagerProducer.entityManager\"}}"
