@@ -1,5 +1,6 @@
 # onlinebooks API 
 
+
 > Esta API tem como objetivo simular o empréstimo de livros de uma biblioteca. Ela foi construída em JAVA EE 8, usando a versão 11 do Java. Os dados são salvos em um banco de dados MySQL na versão 8. Além disso, para a melhor manutenibilidade do projeto, utilizou-se o Flyaway e o Apache DeltaSpike, sendo o primeiro responsável pelos scripts de migração do banco de dados e o segundo, visa simplificar o padrão Repository em projetos Java.
 
 ### Iniciando
@@ -21,5 +22,17 @@ docker-compose up
 
 ### Endpoints
 >A API possui alguns endpoints para serem utilizados:
+
+>Listagem de livros:
+GET http://localhost:8080/onlinebooks/resources/books
+
+>Listagem de clientes:
+GET http://localhost:8080/onlinebooks/resources/clients
+
+>Listagem de livros emprestados:
+GET http://localhost:8080/onlinebooks/resources/clients/{id}/books
+
+>Reserva de livro:
+POST http://localhost:8080/onlinebooks/resources/books/{id}/reserve?clientId={id}
 
 
