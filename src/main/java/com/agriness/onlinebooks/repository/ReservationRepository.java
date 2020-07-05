@@ -12,4 +12,6 @@ import com.agriness.onlinebooks.model.Reservation;
 public interface ReservationRepository extends EntityRepository <Reservation, Long>{
 	@Query("select r from Reservation r where r.client.id = ?1")
 	List<Reservation> findByClient(Long clientId);
+	
+	
 }

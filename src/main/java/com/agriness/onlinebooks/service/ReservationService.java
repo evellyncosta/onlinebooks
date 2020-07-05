@@ -12,6 +12,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionManagement;
 import javax.inject.Inject;
 
+import com.agriness.onlinebooks.exception.BusinessException;
 import com.agriness.onlinebooks.model.Book;
 import com.agriness.onlinebooks.model.Client;
 import com.agriness.onlinebooks.model.Reservation;
@@ -25,8 +26,7 @@ public class ReservationService {
 	private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 	private static final Integer UNTIL_TREE_DAYS = 3;
 	private static final Integer AFTER_TREE_DAYS = 5;
-	
-	
+
 	@Inject
 	BookRepository bookRepository;
 
@@ -36,15 +36,29 @@ public class ReservationService {
 	@Inject
 	ReservationRepository reservationRepository;
 
-	public Reservation reserveBook(Long bookId, Long clientId) {
+	public Reservation reserveBook(Long bookId, Long clientId) throws BusinessException {
 		LocalDate currentDate = LocalDate.now();
 
-		//Optional<Book> book = bookRepository.findOptionalBy(bookId);
-		//Optional<Client> client = clientRepository.findOptionalBy(clientId);
+		Optional<Book> bookOptional = bookRepository.findOptionalBy(bookId);
+		Optional<Client> clientOptional = clientRepository.findOptionalBy(clientId);
+
+		if (!clientOptional.isPresent()) {
+			throw new BusinessException("Cliente não encontrado");
+		}
+
+		if (!bookOptional.isPresent()) {
+			throw new BusinessException("Livro não encontrado");
+		}
+		
+		if (!bookOptional.get().getAvailable()) {
+			throw new BusinessException("Livro não disponível para reserva");
+		}
+
+		bookOptional.get().setAvailable(false);
 
 		Reservation reserve = new Reservation();
-		//reserve.setBook(book.get());
-		//reserve.setClient(client.get());
+		reserve.setBook(bookOptional.get());
+		reserve.setClient(clientOptional.get());
 		reserve.setDtReservation(currentDate);
 		Reservation createdResesrvation = reservationRepository.save(reserve);
 		return createdResesrvation;
@@ -52,7 +66,7 @@ public class ReservationService {
 
 	public List<Reservation> getReservationByClient(Long clientId) {
 		List<Reservation> reservations = reservationRepository.findByClient(clientId);
-		reservations.forEach(reservation->{
+		reservations.forEach(reservation -> {
 			this.calculateTicketTotal(reservation);
 		});
 		return reservations;
@@ -60,7 +74,7 @@ public class ReservationService {
 	}
 
 	private Reservation calculateTicketTotal(Reservation reservation) {
-		
+
 		LocalDate currentDate = LocalDate.now();
 
 		Long days = ChronoUnit.DAYS.between(reservation.getDtReservation(), currentDate);
@@ -70,31 +84,30 @@ public class ReservationService {
 			reservation.setTicketByDay(new BigDecimal("0"));
 
 		}
-		
-		if (days <= 3) {
+
+		if (days > 0 && days <= 3) {
 			reservation.setTicket(calculateTicket(TICKETPRICE, 3));
 			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.2, new BigDecimal(days)));
 		}
-		
+
 		if (days > 3 && days <= 5) {
 			reservation.setTicket(calculateTicket(TICKETPRICE, 5));
 			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.4, new BigDecimal(days)));
 		}
-		
+
 		if (days > 5) {
 			reservation.setTicket(calculateTicket(TICKETPRICE, 7));
 			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.6, new BigDecimal(days)));
 		}
-		
+
 		return reservation;
 	}
-	
-	
-	private BigDecimal calculateTicket(BigDecimal value, double percentage){
+
+	private BigDecimal calculateTicket(BigDecimal value, double percentage) {
 		return value.multiply(new BigDecimal(percentage)).divide(ONE_HUNDRED);
 	}
-	
-	private BigDecimal calculateTicketByDay(BigDecimal value, double percentage, BigDecimal days){
+
+	private BigDecimal calculateTicketByDay(BigDecimal value, double percentage, BigDecimal days) {
 		return value.multiply(new BigDecimal(percentage)).divide(ONE_HUNDRED).multiply(days);
 	}
 

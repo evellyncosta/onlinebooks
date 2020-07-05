@@ -42,8 +42,8 @@ services:
       - "8080:8080"
     depends_on:
       - "flyway"
-#    volumes:
-#      - './deploy:/opt/jboss/wildfly/standalone/deployments'
+    volumes:
+     - './deploy:/opt/jboss/wildfly/standalone/deployments'
     networks:
       - dev-agriness
 

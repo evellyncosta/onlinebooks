@@ -8,20 +8,20 @@ CREATE TABLE `client` (
 
 INSERT INTO agrinessdb.client
 (name)
-VALUES('Client 1');
+VALUES('João ');
 
 
 INSERT INTO agrinessdb.client
 (name)
-VALUES('Client 2');
+VALUES('Maria');
 
 INSERT INTO agrinessdb.client
 (name)
-VALUES('Client 3');
+VALUES('André');
 
 INSERT INTO agrinessdb.client
 (name)
-VALUES('Client 4');
+VALUES('Marcos');
 
 
 

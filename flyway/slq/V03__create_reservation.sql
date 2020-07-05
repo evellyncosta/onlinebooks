@@ -25,7 +25,7 @@ VALUES(11, 7, '2020-06-28 15:15:00.0');
 
 INSERT INTO agrinessdb.reservation
 (id_client, id_book, dt_reservation)
-VALUES(11, 7, '2020-07-01 15:15:00.0');
+VALUES(11, 8, '2020-07-01 15:15:00.0');
  
 UPDATE book set available = false where id = 5;
 UPDATE book set available = false where id = 6;

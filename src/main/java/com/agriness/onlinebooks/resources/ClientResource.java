@@ -49,6 +49,7 @@ public class ClientResource {
 
 	@GET
 	@Path("/{id}/books")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getReservations(@PathParam("id") Long clientId) {
 		List<Reservation> reservationsByClient= reservationService.getReservationByClient(clientId);
 	

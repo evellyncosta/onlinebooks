@@ -13,6 +13,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.agriness.onlinebooks.exception.BusinessException;
 import com.agriness.onlinebooks.model.Book;
 import com.agriness.onlinebooks.model.Reservation;
 import com.agriness.onlinebooks.repository.BookRepository;
@@ -49,7 +50,7 @@ public class BookResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/{id}/reserve")
-	public Response reserveBook(@PathParam("id") String bookId, @QueryParam("clientId") Long clientId) {
+	public Response reserveBook(@PathParam("id") String bookId, @QueryParam("clientId") Long clientId) throws  BusinessException {
 		Reservation createdReservation = reservationService.reserveBook( Long.valueOf(bookId),  clientId);
 		return Response.ok(200).entity(createdReservation).build();
 
