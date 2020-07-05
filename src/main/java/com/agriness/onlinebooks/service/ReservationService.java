@@ -12,6 +12,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionManagement;
 import javax.inject.Inject;
 
+import com.agriness.onlinebooks.enums.Available;
 import com.agriness.onlinebooks.exception.BusinessException;
 import com.agriness.onlinebooks.model.Book;
 import com.agriness.onlinebooks.model.Client;
@@ -50,11 +51,11 @@ public class ReservationService {
 			throw new BusinessException("Livro não encontrado");
 		}
 		
-		if (!bookOptional.get().getAvailable()) {
+		if (bookOptional.get().getAvailable().getValue()==Available.EMPRESTADO.getValue()) {
 			throw new BusinessException("Livro não disponível para reserva");
 		}
 
-		bookOptional.get().setAvailable(false);
+		bookOptional.get().setAvailable(Available.EMPRESTADO);
 
 		Reservation reserve = new Reservation();
 		reserve.setBook(bookOptional.get());

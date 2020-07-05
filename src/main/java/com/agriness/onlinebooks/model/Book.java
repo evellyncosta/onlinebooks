@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+
+import com.agriness.onlinebooks.enums.Available;
 
 @Entity
 @Table(name = "book")
@@ -29,7 +33,8 @@ public class Book implements Serializable{
 	@Column
 	private String isbn;
 	
-	private Boolean available;
+	@Enumerated(EnumType.ORDINAL)
+	private Available available;
 
 	public Long getId() {
 		return id;
@@ -62,14 +67,13 @@ public class Book implements Serializable{
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	
-	
+		
 
-	public Boolean getAvailable() {
+	public Available getAvailable() {
 		return available;
 	}
 
-	public void setAvailable(Boolean available) {
+	public void setAvailable(Available available) {
 		this.available = available;
 	}
 
