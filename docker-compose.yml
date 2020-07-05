@@ -31,8 +31,10 @@ services:
     container_name: jboss
     ports:
       - "8080:8080"
-    volumes:
-      - './deploy:/opt/jboss/wildfly/standalone/deployments'
+    depends_on:
+      - "db"
+#    volumes:
+#      - './deploy:/opt/jboss/wildfly/standalone/deployments'
     networks:
       - dev-agriness
 

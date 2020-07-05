@@ -14,7 +14,7 @@ import javax.persistence.PersistenceUnit;
 
 public class EntityManagerProducer {
 
-	@PersistenceContext(unitName = "agendamento")
+	@PersistenceContext(unitName = "agriness")
     private EntityManager entityManager;
 
     @ApplicationScoped

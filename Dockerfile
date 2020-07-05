@@ -3,12 +3,12 @@ WORKDIR /app
 COPY . ./
 RUN mvn clean install
 
-FROM jboss/wildfly:20.0.0.Final
+FROM jboss/wildfly:19.1.0.Final
 
 
 USER root
 
-COPY --from=dependant /app/serverconf/mysql-connector-java-8.0.19.jar /opt/mysql-connector-java-8.0.19.jar
+COPY --from=dependant /app/serverconf/mysql-connector-java-8.0.17.jar /opt/mysql-connector-java-8.0.17.jar
 
 #######
 ENV DB_NAME agrinessdb
@@ -16,7 +16,7 @@ ENV DB_USER root
 ENV DB_PASS 123456
 ENV DB_URI 172.10.1.1:3306
 
-ENV MYSQL_VERSION 8.0.19
+ENV MYSQL_VERSION 8.0.17
 ENV JBOSS_CLI /opt/jboss/wildfly/bin/jboss-cli.sh
 ENV DEPLOYMENT_DIR /opt/jboss/wildfly/standalone/deployments/
 
@@ -43,9 +43,9 @@ RUN echo "=> Starting WildFly server" && \
     echo "=> Shutting down WildFly and Cleaning up" && \
       $JBOSS_CLI --connect --command=":shutdown" && \
       rm -rf $JBOSS_HOME/standalone/configuration/standalone_xml_history/ $JBOSS_HOME/standalone/log/* && \
-      rm -f /opt/*.jar
+      rm -f /opt/*.jar 
 
-
+RUN rm -rf /opt/jboss/wildfly/standalone/deployments/*
 
 COPY --from=dependant /app/target/onlinebooks.war /opt/jboss/wildfly/standalone/deployments/onlinebooks.war
 EXPOSE 8080
