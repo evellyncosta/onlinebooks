@@ -2,6 +2,7 @@ package com.agriness.onlinebooks.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 
 @Entity
 @Table(name = "reservation")
@@ -38,7 +40,8 @@ public class Reservation implements Serializable{
 	
 	private BigDecimal ticket;
 	
-	@Column(name = "ticket_by_day")
+	
+	@Column(name = "ticket_by_day" )
 	private BigDecimal ticketByDay;
 
 	public Long getId() {
@@ -82,7 +85,7 @@ public class Reservation implements Serializable{
 	}
 
 	public BigDecimal getTicketByDay() {
-		return ticketByDay;
+		return ticketByDay.setScale(2, RoundingMode.HALF_UP);
 	}
 
 	public void setTicketByDay(BigDecimal ticketByDay) {

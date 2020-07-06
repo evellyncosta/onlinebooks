@@ -1,7 +1,7 @@
 package com.agriness.onlinebooks.enums;
 
 public enum Available {
-	DISPONIVEL(0), EMPRESTADO(1);
+	EMPRESTADO(0), DISPONIVEL(1);
 
 	private final int value;
 

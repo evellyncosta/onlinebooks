@@ -25,8 +25,7 @@ import com.agriness.onlinebooks.repository.ReservationRepository;
 public class ReservationService {
 	private static final BigDecimal TICKETPRICE = BigDecimal.TEN;
 	private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
-	private static final Integer UNTIL_TREE_DAYS = 3;
-	private static final Integer AFTER_TREE_DAYS = 5;
+
 
 	@Inject
 	BookRepository bookRepository;
@@ -88,17 +87,17 @@ public class ReservationService {
 
 		if (days > 0 && days <= 3) {
 			reservation.setTicket(calculateTicket(TICKETPRICE, 3));
-			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.2, new BigDecimal(days)));
+			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.2));
 		}
 
 		if (days > 3 && days <= 5) {
 			reservation.setTicket(calculateTicket(TICKETPRICE, 5));
-			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.4, new BigDecimal(days)));
+			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.4));
 		}
 
 		if (days > 5) {
 			reservation.setTicket(calculateTicket(TICKETPRICE, 7));
-			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.6, new BigDecimal(days)));
+			reservation.setTicketByDay(calculateTicketByDay(TICKETPRICE, 0.6));
 		}
 
 		return reservation;
@@ -108,8 +107,8 @@ public class ReservationService {
 		return value.multiply(new BigDecimal(percentage)).divide(ONE_HUNDRED);
 	}
 
-	private BigDecimal calculateTicketByDay(BigDecimal value, double percentage, BigDecimal days) {
-		return value.multiply(new BigDecimal(percentage)).divide(ONE_HUNDRED).multiply(days);
+	private BigDecimal calculateTicketByDay(BigDecimal value, double percentage) {
+		return value.multiply(new BigDecimal(percentage)).divide(ONE_HUNDRED).multiply(TICKETPRICE);
 	}
 
 }
