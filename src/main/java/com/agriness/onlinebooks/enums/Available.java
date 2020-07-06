@@ -7,7 +7,7 @@ public enum Available {
 
 	Available(final int newValue) {
 		value = newValue;
-	}
+	} 
 
 	public int getValue() {
 		return value;
